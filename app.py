@@ -22,11 +22,9 @@ st.sidebar.header("🔍 Visualization Filters")
 
 # ✅ Filters
 gender_options = ["All"] + list(df["gender"].dropna().unique())
-occupation_options = ["All"] + list(df["occupation"].dropna().unique())
 work_mode_options = ["All"] + list(df["work_mode"].dropna().unique())
 
 selected_gender = st.sidebar.selectbox("Select Gender", gender_options)
-selected_occupation = st.sidebar.selectbox("Select Occupation", occupation_options)
 selected_work_mode = st.sidebar.selectbox("Select Work Mode", work_mode_options)
 
 # --- APPLY FILTERS ---
@@ -34,9 +32,6 @@ filtered_df = df.copy()
 
 if selected_gender != "All":
     filtered_df = filtered_df[filtered_df["gender"] == selected_gender]
-
-if selected_occupation != "All":
-    filtered_df = filtered_df[filtered_df["occupation"] == selected_occupation]
 
 if selected_work_mode != "All":
     filtered_df = filtered_df[filtered_df["work_mode"] == selected_work_mode]
