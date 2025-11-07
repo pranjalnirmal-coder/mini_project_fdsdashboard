@@ -14,11 +14,4 @@ It provides clean and aesthetic data visualizations using **Seaborn** and **Matp
 - 💬 **Scatter Plot:** Screen Time vs Mental Wellness Index  
 - 🌙 **Histogram:** Distribution of Sleep Hours  
 
----
 
-## 📦 Installation
-
-### 1️⃣ Clone or Download the Repository
-```bash
-git clone https://github.com/yourusername/mental-health-dashboard.git
-cd mental-health-dashboard
