@@ -21,7 +21,8 @@ st.markdown("### Visual Analysis of Stress, Sleep, and Screen Habits")
 st.sidebar.header("Visualization Controls")
 show_data = st.sidebar.checkbox("Show Raw Data", False)
 if show_data:
-    st.write(df.head())
+    st.subheader("📋 Dataset Preview")
+    st.dataframe(df, use_container_width=True, height=400)  # ✅ Full-width scrollable table
 
 # Line Plot
 st.subheader("Stress Level vs Age")
@@ -64,7 +65,7 @@ plt.pie(sleep_quality_counts,
 plt.title('Sleep Quality Distribution (1–5)', fontsize=14, weight='bold')
 st.pyplot(fig4)
 
-#Scatter Plot
+# Scatter Plot
 st.subheader("Screen Time vs Mental Wellness Index")
 fig5 = plt.figure(figsize=(8,5))
 sns.scatterplot(x='screen_time_hours', y='mental_wellness_index_0_100', data=df, color='seagreen', s=70, alpha=0.7)
@@ -73,7 +74,7 @@ plt.xlabel('Screen Time (hours)')
 plt.ylabel('Mental Wellness Index (0–100)')
 st.pyplot(fig5)
 
-#Histogram
+# Histogram
 st.subheader("Distribution of Sleep Hours")
 fig6 = plt.figure(figsize=(8,5))
 sns.histplot(df['sleep_hours'], bins=10, kde=True, color='mediumorchid')
@@ -84,4 +85,3 @@ st.pyplot(fig6)
 
 # Footer
 st.markdown("---")
-
