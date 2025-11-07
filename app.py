@@ -14,7 +14,7 @@ st.set_page_config(page_title="Screen Time vs Mental Wellness Survey Data Analys
 sns.set(style="whitegrid", palette="muted", font_scale=1.1)
 
 # --- FRONTEND ---
-st.title("Mental Health & Lifestyle Dashboard")
+st.title("Screen Time vs Mental Wellness Survey Data Analysis")
 st.markdown("### Visual Analysis of Stress, Sleep, and Screen Habits")
 
 # Sidebar
