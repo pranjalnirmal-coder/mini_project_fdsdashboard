@@ -8,7 +8,7 @@ import seaborn as sns
 df = pd.read_csv("ScreevsmentalH.csv")
 
 # Page configuration
-st.set_page_config(page_title="Mental Health Data Visualizer", layout="wide")
+st.set_page_config(page_title="Screen Time vs Mental Wellness Survey Data Analysis", layout="wide")
 
 # Seaborn style
 sns.set(style="whitegrid", palette="muted", font_scale=1.1)
