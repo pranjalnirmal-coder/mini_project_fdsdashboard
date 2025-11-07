@@ -103,6 +103,3 @@ plt.xlabel('Sleep Hours')
 plt.ylabel('Frequency')
 st.pyplot(fig6)
 
-# Footer
-st.markdown("---")
-st.markdown("Developed by **Pranjal Nirmal** 💻")
