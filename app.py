@@ -18,21 +18,33 @@ st.title("Screen Time vs Mental Wellness Survey Data Analysis")
 st.markdown("### Visual Analysis of Stress, Sleep, and Screen Habits")
 
 # --- SIDEBAR ---
-st.sidebar.header("Visualization Controls")
+st.sidebar.header("🔍 Visualization Filters")
 
-# ✅ Gender Filter
+# ✅ Filters
 gender_options = ["All"] + list(df["gender"].dropna().unique())
+occupation_options = ["All"] + list(df["occupation"].dropna().unique())
+work_mode_options = ["All"] + list(df["work_mode"].dropna().unique())
+
 selected_gender = st.sidebar.selectbox("Select Gender", gender_options)
+selected_occupation = st.sidebar.selectbox("Select Occupation", occupation_options)
+selected_work_mode = st.sidebar.selectbox("Select Work Mode", work_mode_options)
 
-# Filter dataframe based on selection
+# --- APPLY FILTERS ---
+filtered_df = df.copy()
+
 if selected_gender != "All":
-    filtered_df = df[df["gender"] == selected_gender]
-else:
-    filtered_df = df.copy()
+    filtered_df = filtered_df[filtered_df["gender"] == selected_gender]
 
+if selected_occupation != "All":
+    filtered_df = filtered_df[filtered_df["occupation"] == selected_occupation]
+
+if selected_work_mode != "All":
+    filtered_df = filtered_df[filtered_df["work_mode"] == selected_work_mode]
+
+# Show data if checked
 show_data = st.sidebar.checkbox("Show Raw Data", False)
 if show_data:
-    st.subheader("📋 Dataset Preview")
+    st.subheader("📋 Filtered Dataset Preview")
     st.dataframe(filtered_df, use_container_width=True, height=400)
 
 # --- VISUALIZATIONS ---
@@ -41,7 +53,7 @@ if show_data:
 st.subheader("Stress Level vs Age")
 fig1 = plt.figure(figsize=(8,5))
 sns.lineplot(x='age', y='stress_level_0_10', data=filtered_df, marker='o', color='royalblue')
-plt.title(f'Stress Level vs Age ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Stress Level vs Age', fontsize=14, weight='bold')
 plt.xlabel('Age')
 plt.ylabel('Stress Level (0–10)')
 st.pyplot(fig1)
@@ -50,7 +62,7 @@ st.pyplot(fig1)
 st.subheader("Average Stress Level by Occupation")
 fig2 = plt.figure(figsize=(8,5))
 sns.barplot(x='occupation', y='stress_level_0_10', data=filtered_df, estimator='mean', ci=None, palette='coolwarm')
-plt.title(f'Average Stress Level by Occupation ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Average Stress Level by Occupation', fontsize=14, weight='bold')
 plt.xlabel('Occupation')
 plt.ylabel('Average Stress Level (0–10)')
 st.pyplot(fig2)
@@ -59,7 +71,7 @@ st.pyplot(fig2)
 st.subheader("Sleep Hours by Occupation")
 fig3 = plt.figure(figsize=(8,5))
 sns.boxplot(x='occupation', y='sleep_hours', data=filtered_df, palette='pastel')
-plt.title(f'Sleep Hours by Occupation ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Sleep Hours by Occupation', fontsize=14, weight='bold')
 plt.xlabel('Occupation')
 plt.ylabel('Sleep Hours')
 st.pyplot(fig3)
@@ -75,14 +87,14 @@ plt.pie(sleep_quality_counts,
         startangle=140,
         colors=colors,
         textprops={'fontsize': 11})
-plt.title(f'Sleep Quality Distribution (1–5) ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Sleep Quality Distribution (1–5)', fontsize=14, weight='bold')
 st.pyplot(fig4)
 
 # Scatter Plot
 st.subheader("Screen Time vs Mental Wellness Index")
 fig5 = plt.figure(figsize=(8,5))
 sns.scatterplot(x='screen_time_hours', y='mental_wellness_index_0_100', data=filtered_df, color='seagreen', s=70, alpha=0.7)
-plt.title(f'Screen Time vs Mental Wellness Index ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Screen Time vs Mental Wellness Index', fontsize=14, weight='bold')
 plt.xlabel('Screen Time (hours)')
 plt.ylabel('Mental Wellness Index (0–100)')
 st.pyplot(fig5)
@@ -91,7 +103,7 @@ st.pyplot(fig5)
 st.subheader("Distribution of Sleep Hours")
 fig6 = plt.figure(figsize=(8,5))
 sns.histplot(filtered_df['sleep_hours'], bins=10, kde=True, color='mediumorchid')
-plt.title(f'Distribution of Sleep Hours ({selected_gender})', fontsize=14, weight='bold')
+plt.title('Distribution of Sleep Hours', fontsize=14, weight='bold')
 plt.xlabel('Sleep Hours')
 plt.ylabel('Frequency')
 st.pyplot(fig6)
