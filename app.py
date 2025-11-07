@@ -62,13 +62,13 @@ plt.xlabel('Occupation')
 plt.ylabel('Average Stress Level (0–10)')
 st.pyplot(fig2)
 
-# ✅ UPDATED BOX PLOT (exercise_minutes_per_week vs social_hours_per_week)
-st.subheader("Exercise Minutes vs Social Hours (Box Plot)")
+# Box Plot
+st.subheader("Sleep Hours by Occupation")
 fig3 = plt.figure(figsize=(8,5))
-sns.boxplot(x='exercise_minutes_per_week', y='social_hours_per_week', data=filtered_df, palette='Set3')
-plt.title('Exercise Minutes vs Social Hours', fontsize=14, weight='bold')
-plt.xlabel('Exercise Minutes per Week')
-plt.ylabel('Social Hours per Week')
+sns.boxplot(x='occupation', y='sleep_hours', data=filtered_df, palette='pastel')
+plt.title('Sleep Hours by Occupation', fontsize=14, weight='bold')
+plt.xlabel('Occupation')
+plt.ylabel('Sleep Hours')
 st.pyplot(fig3)
 
 # Pie Chart
